@@ -7,7 +7,6 @@ jobs:
       - uses: ./.github/actions/env-export
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
-          DEMO_PASSWORD: secrethub://florisvdg/demo/password
           SLACK_WEBHOOK: secrethub://florisvdg/demo/slack_webhook
       - name: Print environment with masked secrets
         run: env
