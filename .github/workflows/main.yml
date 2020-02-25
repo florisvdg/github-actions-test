@@ -1,0 +1,14 @@
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SecretHub
+        run: curl -sLJO https://deb.secrethub.io/amd64 && sudo dpkg -i secrethub-cli-amd64.deb
+      - name: Test my app
+        shell: secrethub run -- bash {0}
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+          DEMO_PASSWORD: secrethub://florisvdg/demo/password
+        run: |
+          echo "Password $DEMO_PASSWORD"
