@@ -8,6 +8,8 @@ jobs:
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
           SLACK_WEBHOOK: secrethub://florisvdg/demo/slack_webhook
+          TEST_SECRET: secrethub://florisvdg/demo/secret_with_newlines
+      - run: echo $TEST_SECRET
       - name: Print environment with masked secrets
         run: printenv
       - name: Notify Slack
