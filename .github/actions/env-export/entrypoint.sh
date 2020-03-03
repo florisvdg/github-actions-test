@@ -8,10 +8,9 @@ echo "$env_var_names"
 for var_name in $env_var_names; do
 	secret_value=$(secrethub env read $var_name)
 
-	# Escape percent signs and add a mask per line (see https://github.com/actions/runner/issues/161)
-	escaped_mask_value=$(echo "$secret_value" | sed -e 's/%/%25/g')
+	# Add a mask per line (see https://github.com/actions/runner/issues/161)
 	IFS=$'\n'
-	for line in $escaped_mask_value; do
+	for line in $secret_value; do
 		echo "::add-mask::$line"
 	done
 	unset IFS
