@@ -4,7 +4,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: secrethub/actions/env-export@feature/env-export
+      - uses: ./.github/actions
+      - uses: secrethub/actions/env-export@master
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
           SLACK_WEBHOOK: secrethub://florisvdg/demo/slack_webhook
@@ -17,5 +18,4 @@ jobs:
         uses: Ilshidur/action-slack@2.0.1 # this Action expects SLACK_WEBHOOK to be set
         with:
           args: |
-            Hello from GitHub Actions with secrets:
-              TEST_USERNAME: {{ TEST_USERNAME }}
+            Hello from GitHub Actions 🚀
